@@ -35,8 +35,10 @@ commands:
           command: |
             cd ~/project/backend
             npm install
-            npm run vuild
-            npm run migrations:revert             
+            npm run build
+            npm run migrations:revert   
+          
+                    
 jobs:
   build-frontend:
     docker:
