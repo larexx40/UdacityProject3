@@ -338,20 +338,12 @@ jobs:
             export URL="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-${AWS_DEFAULT_REGION}.amazonaws.com/#/employees"            
             echo $URL
             if curl ${URL} | grep "Welcome"; then return 0; else return 1; fi
-      - destroy-environment:
-          description: Destroy backend and frontend cloudformation stacks given a workflow ID.
-          parameters:
-            workflow_id:
-              type: string      
-          steps:
-            - run:
-                name: Destroy environments
-                when: on_fail
-                command: |
-                  echo "Destroying environment: << parameters.workflow_id >> "
-                  # Your code goes here
-      - revert-migrations:
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      # - destroy-environment:
+      #     workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      #     when: on_fail
+      # - revert-migrations:
+      #     workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      #     when: on_fail
       # Here's where you will add some code to rollback on failure  
 
   # cloudfront-update:
